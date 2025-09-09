@@ -5,6 +5,10 @@ frontend/node_modules/
 backend/__pycache__/
 backend/.venv/
 *.pyc
+__pycache__/
+
+# Ignore Python virtual environment
+.venv/
 
 # Environment files
 backend/.env
