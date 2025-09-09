@@ -1,0 +1,381 @@
+/* Map Component Styles */
+
+.map-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  min-height: 500px;
+}
+
+.map-leaflet {
+  height: 100%;
+  width: 100%;
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1002;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.sidebar-overlay-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sliding Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100vh;
+  background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: white;
+  z-index: 1003;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+}
+
+.sidebar-open {
+  transform: translateX(0);
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #00bcd4;
+}
+
+.sidebar-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Sidebar Content */
+.sidebar-content {
+  padding: 1rem;
+}
+
+.sidebar-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-section:last-child {
+  border-bottom: none;
+}
+
+.sidebar-section h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #86efac;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Status Information */
+.status-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.status-value {
+  font-weight: 600;
+}
+
+.status-value.ships {
+  color: #86efac;
+}
+
+.status-value.status-connected {
+  color: #86efac;
+}
+
+.status-value.status-disconnected {
+  color: #fde047;
+}
+
+.status-value.status-error {
+  color: #fca5a5;
+}
+
+.status-note {
+  color: #9ca3af;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.status-row.loading {
+  color: #fde047;
+  justify-content: center;
+}
+
+.status-row.error {
+  color: #fca5a5;
+  justify-content: center;
+}
+
+/* Grid Controls */
+.grid-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.toggle-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-on {
+  background-color: #16a34a;
+  color: white;
+}
+
+.toggle-on:hover {
+  background-color: #15803d;
+}
+
+.toggle-off {
+  background-color: #4b5563;
+  color: white;
+}
+
+.toggle-off:hover {
+  background-color: #374151;
+}
+
+.grid-step-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.grid-step-control label {
+  font-size: 0.9rem;
+  color: #d1d5db;
+}
+
+.grid-select {
+  background-color: #374151;
+  color: white;
+  border: 1px solid #4b5563;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* Refresh Button */
+.refresh-button-sidebar {
+  width: 100%;
+  padding: 0.75rem;
+  background: #0891b2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.refresh-button-sidebar:hover {
+  background: #0e7490;
+}
+
+.refresh-button-sidebar:disabled {
+  background: #4b5563;
+  cursor: not-allowed;
+}
+
+.refresh-button-sidebar.refreshing {
+  background: #16a34a;
+}
+
+/* Circular animation for refresh button */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.refresh-button-sidebar.refreshing::before {
+  content: '';
+  animation: spin 1s linear infinite;
+}
+
+/* Loading overlay for map */
+.map-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.map-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #00bcd4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 1rem;
+}
+
+/* Legend */
+.legend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.legend-dot-cargo {
+  color: #16a34a;
+  font-size: 1.2rem;
+}
+
+.legend-dot-tanker {
+  color: #e11d48;
+  font-size: 1.2rem;
+}
+
+.legend-dot-passenger {
+  color: #f59e0b;
+  font-size: 1.2rem;
+}
+
+.legend-dot-fishing {
+  color: #2563eb;
+  font-size: 1.2rem;
+}
+
+.legend-dot-tug {
+  color: #8e24aa;
+  font-size: 1.2rem;
+}
+
+.legend-dot-other {
+  color: #6b7280;
+  font-size: 1.2rem;
+}
+
+/* Grid label styles */
+.grid-label {
+  background: transparent !important;
+  border: none !important;
+  color: #00bcd4 !important;
+  font-size: 10px !important;
+  font-weight: 500 !important;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Loading overlay for map */
+.map-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1005;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.map-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #00bcd4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 1rem;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
